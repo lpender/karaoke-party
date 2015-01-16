@@ -1,0 +1,24 @@
+<head>
+  <title>Karaoke Party!!!</title>
+</head>
+
+<body>
+  <h1>Karaoke Party Songs!</h1>
+
+  <form class="new-task">
+    <input type="text" name="text" placeholder="Type in here" />
+  </form>
+  <ul>
+    {{#each tasks}}
+      {{> task}}
+    {{/each}}
+  </ul>
+</body>
+
+<template name="task">
+  <li class="{{#if checked}}checked{{/if}}">
+    <button class="delete">&times;</button>
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+    <span class="text">{{text}}</span>
+  </li>
+</template>
