@@ -3,22 +3,31 @@
 </head>
 
 <body>
-  <h1>Karaoke Party Songs!</h1>
+  <main>
+    <h1>Karaoke Party!!!</h1>
 
-  <form class="new-task">
-    <input type="text" name="text" placeholder="Type in here" />
-  </form>
-  <ul>
-    {{#each tasks}}
-      {{> task}}
-    {{/each}}
-  </ul>
+    <form class="new-song">
+      <input type="text" name="name" placeholder="Your name"/>
+      <input type="text" name="song" placeholder="Your song"/>
+      <input type="submit" />
+    </form>
+    <ul>
+      {{#each songs}}
+        {{> song}}
+      {{/each}}
+    </ul>
+  </main>
 </body>
 
-<template name="task">
+<template name="song">
   <li class="{{#if checked}}checked{{/if}}">
     <button class="delete">&times;</button>
-    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
-    <span class="text">{{text}}</span>
+    <label>
+      <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+      <span class="name">{{name}}</span>
+      <a href="{{youtube_link}}" target="_blank">
+        <span class="song">{{song}}</span>
+      </a>
+    </label>
   </li>
 </template>

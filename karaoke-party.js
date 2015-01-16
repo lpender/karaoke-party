@@ -1,33 +1,45 @@
-Tasks = new Mongo.Collection("tasks");
+Songs = new Mongo.Collection("songs");
 
 if (Meteor.isClient) {
   Template.body.helpers({
-    tasks: function() {
-      return Tasks.find({}, {sort: {createdAt: -1 }});
+    songs: function() {
+      return Songs.find({}, {sort: {createdAt: -1 }});
     }
   });
 
   Template.body.events({
-    "submit .new-task": function(event) {
-      var text = event.target.text.value;
+    "submit .new-song": function(event) {
+      var name = event.target.name.value;
+      var song = event.target.song.value;
 
-      Tasks.insert({
-        text: text,
+      Songs.insert({
+        name: name,
+        song: song,
         createdAt: new Date()
       });
 
-      event.target.text.value = "";
+      event.target.name.value = "";
+      event.target.song.value = "";
 
       return false;
     }
   });
 
-  Template.task.events({
+  Template.song.events({
     "click .toggle-checked": function() {
-      Tasks.update(this._id, {$set: {checked: ! this.checked}});
+      Songs.update(this._id, {$set: {checked: ! this.checked}});
     },
     "click .delete": function() {
-      Tasks.remove(this._id);
+      Songs.remove(this._id);
+    }
+  });
+
+  Template.song.helpers({
+    youtube_link: function() {
+      var link = "https://www.youtube.com/results?search_query=";
+      link += this.song.replace(" ", "+");
+      link += "+karaoke";
+      return link;
     }
   });
 }

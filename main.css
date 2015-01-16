@@ -64,7 +64,7 @@ form {
 }
 
 ul {
-  margin: 0;
+  margin-top: 3em;
   padding: 0;
   background: white;
 }
@@ -85,15 +85,15 @@ li {
   border-bottom: #eee solid 1px;
 }
 
-li .text {
+li .song {
   margin-left: 10px;
 }
 
-li.checked {
+li.checked a {
   color: #888;
 }
 
-li.checked .text {
+li.checked .song {
   text-decoration: line-through;
 }
 
