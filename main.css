@@ -1,8 +1,8 @@
 /* CSS declarations go here */
 body {
   font-family: sans-serif;
-  background-color: #315481;
-  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+  font-size: 2em;
+  background-image: url("http://th08.deviantart.net/fs70/200H/f/2013/283/0/3/pixel_microphone_by_captaintoog-d69emwf.png");
   background-attachment: fixed;
 
   position: absolute;
@@ -11,10 +11,9 @@ body {
   left: 0;
   right: 0;
 
-  padding: 0;
+  padding: 3em;
   margin: 0;
 
-  font-size: 14px;
 }
 
 .container {
@@ -49,18 +48,34 @@ form {
   position: relative;
 }
 
-.new-task input {
+.new-song input {
   box-sizing: border-box;
   padding: 10px 0;
   background: transparent;
   border: none;
-  width: 100%;
   padding-right: 80px;
   font-size: 1em;
 }
 
-.new-task input:focus{
+.new-song input:focus{
   outline: 0;
+}
+
+input[type='checkbox'] {
+  display: none;
+  /* -webkit-appearance:none; */
+  /* width:30px; */
+  /* height:30px; */
+  /* background:white; */
+  /* border-radius:5px; */
+  /* border:2px solid #555; */
+}
+input[type='checkbox']:checked {
+  /* background: #abd; */
+}
+
+label {
+  cursor: pointer;
 }
 
 ul {
@@ -93,7 +108,7 @@ li.checked a {
   color: #888;
 }
 
-li.checked .song {
+li.checked {
   text-decoration: line-through;
 }
 
@@ -120,7 +135,7 @@ header .hide-completed {
     clear: both;
   }
 
-  .new-task input {
+  .new-song input {
     padding-bottom: 5px;
   }
 }
