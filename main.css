@@ -2,7 +2,7 @@
 body {
   font-family: sans-serif;
   font-size: 2em;
-  background-image: url("http://th08.deviantart.net/fs70/200H/f/2013/283/0/3/pixel_microphone_by_captaintoog-d69emwf.png");
+  /* background-image: url("http://th08.deviantart.net/fs70/200H/f/2013/283/0/3/pixel_microphone_by_captaintoog-d69emwf.png"); */
   background-attachment: fixed;
 
   position: absolute;
@@ -44,7 +44,7 @@ h1 {
 
 form {
   margin-top: 10px;
-  margin-bottom: -10px;
+  margin-bottom: 10px;
   position: relative;
 }
 
@@ -79,7 +79,6 @@ label {
 }
 
 ul {
-  margin-top: 3em;
   padding: 0;
   background: white;
 }

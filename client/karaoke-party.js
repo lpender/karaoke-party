@@ -1,6 +1,6 @@
 Template.body.helpers({
   songs: function() {
-    return Songs.find({}, {sort: {createdAt: -1 }});
+    return Songs.find({}, {sort: {createdAt: 1 }});
   }
 });
 
@@ -46,6 +46,11 @@ Template.song.events({
   },
   "click .delete": function() {
     Songs.remove(this._id);
+  },
+  "click a": function() {
+    window.player.loadVideoById(this.id)
+    Songs.update(this._id, {$set: {checked: true}});
+    return false;
   }
 });
 

@@ -6,11 +6,16 @@
   <main>
     <h1>Karaoke Party!!!</h1>
 
+
     <form class="new-song">
       <input type="text" name="name" placeholder="Your name"/>
       <input type="text" name="song" placeholder="Your song"/>
-      <input type="submit" />
+      <input type="submit" value="Add to Queue"/>
     </form>
+
+    <div id="player" style="height:400px;">
+    </div>
+
     <ul>
       {{#each songs}}
         {{> song}}
