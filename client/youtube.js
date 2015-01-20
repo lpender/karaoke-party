@@ -5,15 +5,24 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
-  window.player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'M7lc1UVf-VE',
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
+  var check = setInterval( function () {
+    if (window.songsReady) {
+      window.player = new YT.Player('player', {
+        height: '390',
+        width: '640',
+        videoId: (function () {
+          id = Meteor.call("getCurrentSongId");
+          return id;
+        }()),
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+
+      clearInterval(check);
     }
-  });
+  }, 300);
 }
 
 // 4. The API will call this function when the video player is ready.

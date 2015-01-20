@@ -107,7 +107,7 @@ li.checked a {
   color: #888;
 }
 
-li.checked {
+li.checked label {
   text-decoration: line-through;
 }
 

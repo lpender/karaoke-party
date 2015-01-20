@@ -23,11 +23,21 @@ Template.body.events({
       function (error, result) {
         var songId = result.data.items[0].id.videoId;
 
-        Songs.insert({
+        song = Songs.insert({
           name: name,
           song: song,
           id: songId,
           createdAt: new Date()
+        });
+
+        Meteor.call("updateNext");
+
+        var currentSong = Meteor.call("getCurrentSong", function (error, result) {
+          if (result) {
+
+          } else {
+            Meteor.call("selectSong", Songs.findOne({_id: song}));
+          }
         });
       }
     );
@@ -43,13 +53,14 @@ Template.body.events({
 Template.song.events({
   "click .toggle-checked": function() {
     Songs.update(this._id, {$set: {checked: ! this.checked}});
+    Meteor.call("updateNext");
   },
   "click .delete": function() {
     Songs.remove(this._id);
+    Meteor.call("updateNext");
   },
   "click a": function() {
-    window.player.loadVideoById(this.id)
-    Songs.update(this._id, {$set: {checked: true}});
+    Meteor.call("selectSong", this);
     return false;
   }
 });
@@ -61,3 +72,9 @@ Template.song.helpers({
     return link;
   }
 });
+
+Template.song.rendered = function () {
+  if(Meteor.isClient) {
+    window.songsReady = true;
+  }
+};
