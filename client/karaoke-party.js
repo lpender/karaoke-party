@@ -32,13 +32,10 @@ Template.body.events({
 
         Meteor.call("updateNext");
 
-        var currentSong = Meteor.call("getCurrentSong", function (error, result) {
-          if (result) {
-
-          } else {
-            Meteor.call("selectSong", Songs.findOne({_id: song}));
-          }
-        });
+        var currentSong = getCurrentId();
+        if (!currentSong) {
+          Meteor.call("selectSong", Songs.findOne({_id: song}));
+        }
       }
     );
 

@@ -25,7 +25,7 @@
 </body>
 
 <template name="song">
-  <li class="{{#if checked}}checked{{/if}}">
+  <li class="{{#if checked}}checked{{/if}} {{#if current}}current{{/if}}" data-ytid="{{id}}">
     <button class="delete">&times;</button>
     <label>
       <input type="checkbox" checked="{{checked}}" class="toggle-checked" />

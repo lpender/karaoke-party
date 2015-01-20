@@ -4,6 +4,9 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+function getCurrentId() {
+  return $("li.current").data("ytid");
+}
 window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
   var check = setInterval( function () {
     if (window.songsReady) {
@@ -11,8 +14,7 @@ window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
         height: '390',
         width: '640',
         videoId: (function () {
-          id = Meteor.call("getCurrentSongId");
-          return id;
+          return getCurrentId();
         }()),
         events: {
           'onReady': onPlayerReady,
@@ -35,9 +37,9 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    // setTimeout(stopVideo, 6000);
-    // done = true;
+  if (event.data == YT.PlayerState.ENDED) {
+    debugger;
+    Meteor.call("selectSong", Songs.findOne({next: true}));
   }
 }
 
