@@ -4,9 +4,10 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-function getCurrentId() {
+window.getCurrentId = function getCurrentId() {
   return $("li.current").data("ytid");
 }
+
 window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
   var check = setInterval( function () {
     if (window.songsReady) {

@@ -5,6 +5,9 @@ Template.body.helpers({
 });
 
 Template.body.events({
+  "change .play-now": function(event) {
+    Session.set("playNow", event.target.checked);
+  },
   "submit .new-song": function(event) {
     var name = event.target.name.value;
     var song = event.target.song.value;
@@ -33,7 +36,7 @@ Template.body.events({
         Meteor.call("updateNext");
 
         var currentSong = getCurrentId();
-        if (!currentSong) {
+        if (!currentSong || Session.get("playNow")) {
           Meteor.call("selectSong", Songs.findOne({_id: song}));
         }
       }
